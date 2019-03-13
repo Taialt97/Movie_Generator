@@ -1,12 +1,19 @@
 //Movielist Ajax
 let MovieListArray = [];
 
-GetMovieList()
+$(document).ready(function(){
+    let random = GetRendomNumber()
+    GetMovieList(random)
+})
 
-function GetMovieList() {
-    let RendomNumber = Math.floor((Math.random() * 1000) + 1);
-    console.log(RendomNumber)
-    let MovieListUrl = `https://api.themoviedb.org/3/discover/movie?api_key=8f715f3496aabb0d3e8c0fcd01f82f13&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=${RendomNumber}`
+function GetRendomNumber(){
+    return Math.floor(Math.random() * 1001);
+}
+
+
+function GetMovieList(value) {
+    console.log(value)
+    MovieListUrl = `https://api.themoviedb.org/3/discover/movie?api_key=8f715f3496aabb0d3e8c0fcd01f82f13&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=${value}`
     $.ajax({
         type: 'GET',
         datatype: 'json',
@@ -14,12 +21,15 @@ function GetMovieList() {
         async: false,
         success: function (data) {
             MovieListArray = data.results;
-            PrintAllMovies()
+            // PrintAllMovies()
+            console.log("success")
+            console.log(MovieListArray)
         },
         error: function (error) {
             console.log('error :', error);
         }
     });
+    PrintAllMovies()
 }
 
 function PrintAllMovies() {
@@ -29,7 +39,7 @@ function PrintAllMovies() {
         if (value.poster_path !== null) {
             Picture = `http://image.tmdb.org/t/p/w500/${value.poster_path}`
         } else {
-            Picture = 'NoPoster.png'
+            Picture = './css/images/NoPoster.png'
         }
         $('.owl-carousel').append(`
         <div class="item">
@@ -53,24 +63,3 @@ function PrintAllMovies() {
         `)
     })
 }
-
-
-// <!-- ItemInfo -->
-// <div class="itemInfo">
-//     <h1 class="TitleOfSingle">Moonlight</h1>
-// <div id="Stars">
-//     <i class="fas fa-star"></i>
-//     <i class="fas fa-star"></i>
-//     <i class="fas fa-star"></i>
-//     <i class="fas fa-star"></i>
-//     <i class="fas fa-star"></i>
-// </div>
-// <small>oooooooooo | oooooooooo | ooooooooo</small>
-// <p>
-//     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur officiis consequatur laborum aut
-//     quas vero sequi repellendus facilis amet voluptate porro eos doloribus modi ipsum, earum fugiat hic
-//     voluptates.
-// </p>
-// </div>
-// <!-- /// -->
-

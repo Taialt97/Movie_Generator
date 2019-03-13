@@ -1,4 +1,4 @@
-function OwlCarousel() {
+$(document).ready(function(){
     var owl = $('.owl-carousel');
     owl.owlCarousel({
         //When page load (i think) call function 'inlargItem'
@@ -13,7 +13,7 @@ function OwlCarousel() {
         items: 5,
     })
     $('.owl-stage').addClass('wraper')
-}
+})
 
 //Calls inlargItem on every change
 $('.owl-carousel').on('changed.owl.carousel', function (event) {
@@ -28,6 +28,7 @@ function inlargItem(event) {
     var activeClassDividedByTwo = Math.ceil($(".active").length / 2)
     //Adding the activeClassDividedByTwo (is 3 on larg screens)
     let OwlNumber = event.item.index + activeClassDividedByTwo
+    let ActiveH4 = event.item.index - 6
     //Not Active  
     $(".itemInfo").remove();
     $(".item").removeClass("big")
@@ -39,6 +40,7 @@ function inlargItem(event) {
     $('.InfoOfItem').eq(OwlNumber).removeClass("noDisplay")
     $('.resize').eq(OwlNumber).removeClass("noDisplay")
     $('.fitImg').eq(OwlNumber).addClass("borderWhite")
+    
 }
 
 //For key movement
