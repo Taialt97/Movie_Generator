@@ -4,5 +4,8 @@ The first website I've ever done that started from a concept all the way to a wo
 
 Movie Generator Website Link:  https://taialt97.github.io/Movie_Generator/index.html
 
-I'll attach pictures and drawings to show the progress and closeness to the reference I've created on a different website.
+First scetch 
+<img src="./refrence/Artboard_3.png" alt="First scetch ">
 
+<img src="./refrence/Artboard_1.png" alt="First scetch ">
+<img src="./refrence/Artboard_2.png" alt="First scetch ">
